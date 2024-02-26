@@ -1,0 +1,17 @@
+# 订阅地址，必填
+feedAddrs:
+#  - "0.0.0.0:50051"
+  - "bscp-feed.site.bktencent.com:9511"
+# 业务ID，必填
+biz: 3
+# 服务秘钥，必填
+token: "***"
+# 实例标签，选填
+labels:
+  - "region": "nanjing"
+  - "env": "prod"
+# bscp 临时工作目录，选填
+tempDir: "/data/bscp"
+# 拉取或监听的服务
+config:
+  app: aaa
