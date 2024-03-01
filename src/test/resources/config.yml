@@ -1,0 +1,45 @@
+# 订阅地址，必填
+feedAddrs:
+#  - "0.0.0.0:50051"
+  - "bscp-feed.site.bktencent.com:9511"
+# 业务ID，必填
+biz: 3
+# 服务秘钥，必填
+token: "****"
+# 实例标签，选填
+labels:
+  - "region": "nanjing"
+  - "env": "prod"
+# bscp 临时工作目录，选填
+tempDir: "/data/bscp"
+# 拉取或监听的服务
+# 用于test环境测试
+test:
+  kvCtl:
+    - watchMode: true
+      keys: newline_yaml,newline_xml,newline_json
+      app: aaaaaa
+  pullFile:
+    - app: aaa
+  pullKv:
+    - app: aaaaaa
+      key: newline_yaml
+  watchFile:
+    - app: aaa
+  watchKv:
+    - app: aaaaaa
+# 用于本地测试
+#test:
+#  kvCtl:
+#    - watchMode: true
+#      keys: string_key_1,number_key_1,text_key_1
+#      app: demo
+#  pullFile:
+#    - app: demo
+#  pullKv:
+#      app: demo
+#      key: string_key_1
+#  watchFile:
+#    - app: demo
+#  watchKv:
+#    - app: demo

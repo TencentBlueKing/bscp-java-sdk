@@ -1,0 +1,96 @@
+plugins {
+    id 'idea'
+    //id 'application'
+    id 'java'
+    id 'maven-publish'
+    id 'com.google.protobuf' version '0.9.4'
+    id "com.github.ben-manes.versions" version "0.49.0"
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group 'com.tencent.bscp'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation "io.grpc:grpc-netty-shaded:$grpc_version"
+    implementation "io.grpc:grpc-protobuf:$grpc_version"
+    implementation "io.grpc:grpc-stub:$grpc_version"
+    implementation "io.grpc:grpc-services:$grpc_version"
+
+    compileOnly "javax.annotation:javax.annotation-api:$annotation_version"
+
+    implementation "ch.qos.logback:logback-classic:$logback_version"
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation "commons-io:commons-io:$commons_io_version"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-protobuf
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-protobuf:$jackson_version"
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
+    implementation "com.squareup.okhttp3:okhttp-tls:$okhttp3_version"
+    implementation "io.github.hakky54:sslcontext-kickstart:$sslcontext_version"
+    implementation "io.prometheus:prometheus-metrics-core:$prometheus_version"
+    implementation "io.prometheus:prometheus-metrics-instrumentation-jvm:$prometheus_version"
+    implementation "io.prometheus:prometheus-metrics-exporter-httpserver:$prometheus_version"
+
+    testImplementation "org.yaml:snakeyaml:$snakeYaml_version"
+    testImplementation "io.grpc:grpc-testing:$grpc_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junit_version")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:$junit_version")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:$junit_version")
+
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:$protoc_version"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:$grpc_version"
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.plugins {
+                grpc {}     // Generate Java gRPC classes
+            }
+        }
+    }
+}
+test {
+    useJUnitPlatform()
+}
+
+// Required for multiple uberjar targets
+shadowJar {
+    mergeServiceFiles()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        mavenLocal()
+        maven {
+            url = project.property('mavenRepoUrl')
+            credentials {
+                username = project.property('mavenRepoUsername')
+                password = project.property('mavenRepoPassword')
+            }
+        }
+    }
+}
