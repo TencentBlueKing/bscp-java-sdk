@@ -9,7 +9,8 @@ import java.io.IOException;
 
 public class JsonHelper {
     private static final ThreadLocal<ObjectMapper> objectMapperThreadLocal =
-            ThreadLocal.withInitial(() -> new ObjectMapper().disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES));
+            ThreadLocal.withInitial(() -> new ObjectMapper().disable(
+                DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES));
 
     public static String serialize(Object object) throws JsonProcessingException {
         ObjectMapper objectMapper = objectMapperThreadLocal.get();
