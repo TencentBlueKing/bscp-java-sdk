@@ -8,6 +8,8 @@ source:
     filepath_regex:
       - .*WatchKVTest.java
       - .*KvCtlTest.java
+      - .*PullFileTest.java
+      - .*BSCPTestBase.java
 
   # 提供产品代码库中工具或框架自动生成的且在代码库中的代码，没有可为空。以便后续代码统计环节进行排除等特殊处理。
   auto_generate_source:
