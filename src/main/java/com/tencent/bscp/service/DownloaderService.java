@@ -12,7 +12,6 @@ import com.tencent.bscp.pojo.DownloadTo;
 import com.tencent.bscp.pojo.ExecDownload;
 import com.tencent.bscp.pojo.TLSBytes;
 import com.tencent.bscp.pojo.Vas;
-import javafx.util.Pair;
 import nl.altindag.ssl.SSLFactory;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -31,6 +30,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -167,7 +167,7 @@ public class DownloaderService implements DownloaderApi {
         long size;
         boolean yes;
         try {
-            Pair<Long, Boolean> pair = isProviderSupportRangeDownload(exec);
+            Map.Entry<Long, Boolean> pair = isProviderSupportRangeDownload(exec);
             size = pair.getKey();
             yes = pair.getValue();
         } catch (Exception e) {
@@ -310,7 +310,7 @@ public class DownloaderService implements DownloaderApi {
         }
     }
 
-    private Pair<Long, Boolean> isProviderSupportRangeDownload(ExecDownload exec) throws IOException {
+    private Map.Entry<Long, Boolean> isProviderSupportRangeDownload(ExecDownload exec) throws IOException {
         Request.Builder requestBuilder = new Request.Builder()
                 .url(exec.getDownloadUri())
                 .head();
@@ -328,7 +328,7 @@ public class DownloaderService implements DownloaderApi {
 
         String acceptRanges = response.header("Accept-Ranges");
         if (acceptRanges == null || !acceptRanges.equals("bytes")) {
-            return new Pair(0L, false);
+            return new AbstractMap.SimpleEntry<>(0L, false);
         }
 
         String contentLength = response.header("Content-Length");
@@ -338,7 +338,7 @@ public class DownloaderService implements DownloaderApi {
 
         long size = Long.parseLong(contentLength);
 
-        return new Pair(size, true);
+        return new AbstractMap.SimpleEntry<>(size, true);
     }
 
     private void downloadDirectlyWithRetry(ExecDownload exec) throws IOException, InterruptedException {

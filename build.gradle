@@ -8,8 +8,8 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
-group 'com.tencent.bscp'
-version '1.0-SNAPSHOT'
+group 'com.tencent.bk.sdk'
+version '1.0'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
