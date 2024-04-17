@@ -5,7 +5,7 @@ feedAddrs:
 # 业务ID，必填
 biz: 3
 # 服务秘钥，必填
-token: "****"
+token: "HxmOksaeuAbhgwfcgDTUSW1s8dVSUVV4"
 # 实例标签，选填
 labels:
   - "region": "nanjing"

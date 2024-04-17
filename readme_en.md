@@ -15,11 +15,11 @@ bscp-java-sdk is the Java SDK of the Blue Whale BSCP project. It can help you ea
 
 ## Install
 
-|           mode           | detail                                                                                                                                                                                                                                                                                                                   |
-|:----------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|         Maven          | <b>\<dependency></b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>\<groupId></b>com.tencent.bscp<b>\</groupId></b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>\<artifactId></b>bscp-sdk-java<b>\</artifactId></b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>\<version></b>1.0<b>\</version></b><br><b>\</dependency></b> |
-| Gradle with Groovy DSL | <b>implementation</b> 'com.tencent.bscp:bscp-sdk-java:1.0'                                                                                                                                                                                                                                                           |
-| Gradle with Kotlin DSL | <b>implementation</b>("com.tencent.bscp:bscp-sdk-java:1.0")                                                                                                                                                                                                                                                          |
+|           mode           | detail                                                                                                                                                                                                                                                                                                                     |
+|:----------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|         Maven          | <b>\<dependency></b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>\<groupId></b>com.tencent.bk.sdk<b>\</groupId></b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>\<artifactId></b>bscp-java-sdk<b>\</artifactId></b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>\<version></b>1.0<b>\</version></b><br><b>\</dependency></b> |
+| Gradle with Groovy DSL | <b>implementation</b> 'com.tencent.bk.sdk:bscp-java-sdk:1.0'                                                                                                                                                                                                                                                           |
+| Gradle with Kotlin DSL | <b>implementation</b>("com.tencent.bk.sdk:bscp-java-sdk:1.0")             
 
 ## Support
 
