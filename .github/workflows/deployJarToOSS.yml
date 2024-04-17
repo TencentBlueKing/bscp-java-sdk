@@ -50,12 +50,12 @@ jobs:
           core_version=${GITHUB_REF##*/v}
           echo "core_version=${core_version}"
           chmod +x ./gradlew
-          ./gradlew :git-checkout-credential:clean shadowJar
           ./gradlew publish -Dcore_version=${core_version} \
           -Psigning.keyId=${{ secrets.SIGNING_KEY_ID }} \
           -Psigning.password='${{ secrets.SIGNING_PASSWORD }}' \
           -Psigning.secretKeyRingFile=${{ github.workspace }}/secretKeyRingFile.gpg \
-          -DmavenRepoUrl="http://maven.aliyun.com/nexus/content/groups/public/"
+          -DmavenRepoUrl="http://maven.aliyun.com/nexus/content/groups/public/" \
+          -Dorg.gradle.parallel=false
       - name: Create changelog text
         id: changelog
         uses: loopwerk/tag-changelog@v1
