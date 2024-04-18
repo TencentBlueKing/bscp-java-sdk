@@ -21,11 +21,11 @@ import java.util.Base64;
 public class TLSHelper {
 
     /**
-     * 创建一个使用TLS的OkHttpClient
+     * TLS OkHttpClient
      * 
-     * @param tlsBytes TLS配置
+     * @param tlsBytes TLS config
      * 
-     * @return SSLFactory 实例
+     * @return SSLFactory
      */
     public static SSLFactory buildSSLFactory(TLSBytes tlsBytes) {
         try {
@@ -34,7 +34,7 @@ public class TLSHelper {
                 return builder.build();
             }
             if (!tlsBytes.isInsecureSkipVerify()) {
-                // 如果不跳过证书验证，则加载CA证书
+                // If certificate verification is not skipped, load the CA certificate
                 byte[] caCertBytes = Base64.getDecoder().decode(tlsBytes.getCaFileBytes());
                 CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
                 X509Certificate caCert = (X509Certificate) certificateFactory
@@ -42,7 +42,7 @@ public class TLSHelper {
                 builder.withTrustMaterial(caCert);
             }
             if (tlsBytes.getCertFileBytes() != null && tlsBytes.getKeyFileBytes() != null) {
-                // 如果提供了客户端证书和私钥，则加载它们
+                // Load the client certificate and private key if they are provided
                 byte[] certBytes = Base64.getDecoder().decode(tlsBytes.getCertFileBytes());
                 byte[] keyBytes = Base64.getDecoder().decode(tlsBytes.getKeyFileBytes());
                 KeyStore keyStore = KeyStore.getInstance("PKCS12");
@@ -58,7 +58,7 @@ public class TLSHelper {
         }
     }
 
-    // 获取X509证书
+    // GET THE X509 CERTIFICATE
     private static X509Certificate getCertificate(byte[] certBytes) {
         try {
             CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");

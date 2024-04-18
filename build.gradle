@@ -14,7 +14,7 @@ version '1.0'
 
 java {
     withSourcesJar()
-//    withJavadocJar()
+    withJavadocJar()
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
@@ -97,6 +97,13 @@ publishing {
                         url = "https://opensource.org/licenses/MIT"
                     }
                 }
+                developers {
+                    developer {
+                        id = "devops"
+                        name = "bk-ci"
+                        email = "devops@tencent.com"
+                    }
+                }
                 scm {
                     url = "https://github.com/TencentBlueKing/bscp-java-sdk"
                     connection = "scm:git:git://github.com/TencentBlueKing/bscp-java-sdk.git"
@@ -123,4 +130,12 @@ publishing {
 
 signing {
     sign publishing.publications.mavenJava
+}
+
+tasks.withType(Javadoc).configureEach {
+    //乱码问题
+    options {
+        encoding "UTF-8"
+    }
+    enabled = false
 }

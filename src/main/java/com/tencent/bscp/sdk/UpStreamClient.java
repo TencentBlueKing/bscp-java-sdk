@@ -91,7 +91,6 @@ public class UpStreamClient implements UpstreamApi, Closeable {
                 reconnectUpstreamServer();
             } catch (Exception e) {
                 LOGGER.warn("reconnectUpstreamServer failed.");
-                // 处理异常的代码
             }
         });
 

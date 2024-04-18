@@ -33,7 +33,6 @@ public class OkhttpHelper {
         return clientBuilder.build();
     }
 
-    // 创建一个使用TLS的OkHttpClient
     public static OkHttpClient getTLSOkHttpClient(TLSBytes tlsBytes) {
         SSLFactory factory = TLSHelper.buildSSLFactory(tlsBytes);
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
