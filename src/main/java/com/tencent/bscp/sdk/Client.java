@@ -73,8 +73,9 @@ public class Client implements ClientApi, Closeable {
         if (fp == null) {
             throw new Exception("Generate instance fingerprint failed");
         }
-        LOGGER.info("Instance fingerprint: " + fp);
-        clientOpt.setFingerprint(Base64.getEncoder().encodeToString(fp.getBytes()).replace("=", ""));
+        String md5fp = Helper.generateMD5(fp);
+        LOGGER.info("Instance fingerprint: {}, md5: {}", fp, md5fp);
+        clientOpt.setFingerprint(md5fp);
         clientOpt.setUid(clientOpt.getFingerprint());
         for (Option opt : opts) {
             if (opt != null) {
