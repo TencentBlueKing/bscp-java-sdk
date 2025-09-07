@@ -42,7 +42,7 @@ dependencies {
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
     implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
     implementation "com.squareup.okhttp3:okhttp-tls:$okhttp3_version"
-    implementation "io.github.hakky54:sslcontext-kickstart:$sslcontext_version"
+    implementation "io.github.hakky54:ayza:$ayza"
     implementation "io.prometheus:prometheus-metrics-core:$prometheus_version"
     implementation "io.prometheus:prometheus-metrics-instrumentation-jvm:$prometheus_version"
     implementation "io.prometheus:prometheus-metrics-exporter-httpserver:$prometheus_version"
